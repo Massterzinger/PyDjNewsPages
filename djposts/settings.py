@@ -25,8 +25,14 @@ SECRET_KEY = 'x&j3gp-*=emwzx7y(@4dl&!$1s@dv8d7ma85^*of+vl9l4u6z5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ 'localhost', '127.0.0.1' ]
+ALLOWED_HOSTS = [ 'localhost', '127.0.0.1']
 
+import os 
+f = os.popen('ifconfig wlp6s0 | grep "inet\ addr" | cut -d: -f2 | cut -d" " -f1') 
+your_ip=f.read()[:-1]               #===============================================================
+f.close()                           #===Hack, i use it because testing on machine with dynamic IP===
+ALLOWED_HOSTS.append(your_ip)       #===============================================================
+#ALLOWED_HOSTS = [ '0.0.0.0', ]
 
 # Application definition
 
@@ -37,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djposts.news',
+    'news',
+    'mainpg',
 ]
 
 MIDDLEWARE = [
