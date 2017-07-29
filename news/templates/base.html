@@ -2,14 +2,18 @@
     <head> 
         <title>{% block title %} News {% endblock %}</title>
     </head>
-    <style type="text/css">
-        body {color: #efd; background: #453; padding: 0 5em; margin: 0}
-        h1 { padding: 2em 1em; background: #675}
-        h2 { color: #bf8; border-top: 1px dotted #fff; margin-top: 2em}
-        p {margin: 1em 0}
-    </style>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
     <body>
-        <h1>Zingeria news</h1>
+        <div id="header">
+            <h1>Zingeria news</h1>
+        </div>
+            <ul id="navbarul">
+                <li><a href="/">Main</a></li>
+                <li><a href="/news/">News</a></li>
+                <li><a href="#">Your Feed</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
         {% block content %}
         {% endblock %}
     </body>

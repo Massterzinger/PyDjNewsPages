@@ -10,3 +10,6 @@ def archive(request):
     #t = loader.get_template("archive.html")
     #c = Context({ 'posts':posts })
     #return HttpResponse(t.render(c))
+
+def newsdetail(request, NewsPost_id):
+    return HttpResponse(render(request, "newsdetail.html", {'posts':NewsPost.objects.filter(id=NewsPost_id)} ))

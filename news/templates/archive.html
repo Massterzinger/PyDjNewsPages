@@ -1,10 +1,38 @@
 {% extends "base.html" %}
 {% block content %}
-{% for post in posts %}
-<div id="newspost">
-    <h2>{{ post.title }}</h2>
-    <p>{{ post.timestamp }}</p>
-    <p>{{ post.body }}</p>
+{% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'w3style.css' %}" />
+<style type="text/css">
+
+a {
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: #951;
+}
+</style>
+<br>
+<div class="w3-row-padding">
+    {% for post in posts %}
+        <div class="w3-card-4 w3-half">
+            <a href="{{ post.id }}">
+                <header class="w3-container w3-blue">
+                    <h1>{{ post.title }}</h1>
+                </header>
+
+                <div class="w3-container">
+                    <p>{{ post.body }}</p>
+                </div>
+
+                <footer class="w3-container w3-blue">
+                    <h5>{{ post.timestamp }}</h5>
+                </footer>
+            </a>
+        </div>
+    {% endfor %}
+
 </div>
-{% endfor %}
 {% endblock %}

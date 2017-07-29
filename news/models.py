@@ -13,4 +13,3 @@ class NewsPost(models.Model):
 class NewsPostAdmin(admin.ModelAdmin):
     list_display = ['title', 'timestamp']
 
-admin.site.register(NewsPost, NewsPostAdmin)

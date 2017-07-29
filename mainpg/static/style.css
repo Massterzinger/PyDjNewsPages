@@ -1,0 +1,46 @@
+body {
+    color: #efd; 
+    background: #453; 
+    padding: 0 5em; 
+    margin: 0
+}
+        
+#header { 
+    padding: 2em 1em; 
+    background: #675
+}
+        
+#newspost h2 { color: #bf8; 
+    border-top: 1px dotted #fff; 
+    margin-top: 2em
+}
+        
+#newspost p {
+    margin: 1em 0
+}
+
+#navbarul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+#navbarul li {
+    float: left;
+    border-right: 1px solid #bbb;
+}
+
+#navbarul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+#navbarul li a:hover {
+    background-color: #111;
+}

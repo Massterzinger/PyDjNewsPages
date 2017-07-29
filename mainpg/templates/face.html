@@ -2,24 +2,47 @@
 {% block content %}
 <style type="text/css">
     #rightnewsaggr { display: flex; flex-direction: column;
-    background: #55a;
+    background: #698;
     left: 80%; position: absolute; 
-    height: 50%; width: 20%; overflow: auto;}
+    height: 50%; width: 20%; overflow: auto; margin-top: 2em}
+
+    #rightnewsaggr ul { 
+    list-style-type: none;
+    padding-left: 10;
+    padding-right: 10;
+    }
+
+    #rightnewsaggr ul li {
+    float: left;
+}
+
+    #rightnewsaggr ul li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+#rightnewsaggr ul li a:hover {
+    background-color: #444;
+}
 </style>
 <div id="content">
     <div id="rightnewsaggr">
         <ul>
         {% for post in posts %}
-        <li><div id="elemnews">
+        <li><a href="news/{{ post.id }}">
             
             <h2>{{ post.title }}</h2>
             <font size=2 face='arial'>
             <p>{{ post.timestamp }}</p>
             <p>{{ post.body }}</p>
             </font>
-        </div></li>
+        </a></li>
         {% endfor %}
         </ul>
     </div>
+
+
+
 </div>
 {% endblock %}
