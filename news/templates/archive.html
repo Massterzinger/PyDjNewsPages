@@ -4,27 +4,40 @@
     <link rel="stylesheet" type="text/css" href="{% static 'w3style.css' %}" />
 <style type="text/css">
 
-a {
+a.tile {
     display: block;
     color: white;
     text-decoration: none;
 }
 
-a:hover {
+.w3-card-4 {
+    margin: 8px;
+}
+
+.container {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: stretch;
+}
+
+a.tile:hover {
     background-color: #951;
 }
 </style>
-<br>
-<div class="w3-row-padding">
+<div class="container">
     {% for post in posts %}
-        <div class="w3-card-4 w3-half">
-            <a href="{{ post.id }}">
+    <div class="w3-half">
+        <div class="w3-card-4" style=" background-color: #595">
+            <a class="tile" href="{% url 'newsdetail' post.id %}">
                 <header class="w3-container w3-blue">
                     <h1>{{ post.title }}</h1>
                 </header>
 
                 <div class="w3-container">
-                    <p>{{ post.body }}</p>
+                    <font size=4 face='arial'><p>{{ post.body }}</p> </font>
                 </div>
 
                 <footer class="w3-container w3-blue">
@@ -32,6 +45,7 @@ a:hover {
                 </footer>
             </a>
         </div>
+    </div>
     {% endfor %}
 
 </div>

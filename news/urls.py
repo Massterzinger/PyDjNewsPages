@@ -3,7 +3,7 @@ from news.views import archive, newsdetail
 
 
 urlpatterns = [
-    url(r'^$', archive),
+    url(r'^$', archive, name="news"),
 
-    url(r'^(?P<NewsPost_id>[0-9]+)$', newsdetail),
+    url(r'^(?P<NewsPost_id>[0-9]+)$', newsdetail, name="newsdetail"),
 ]

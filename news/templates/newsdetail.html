@@ -4,7 +4,7 @@
 <div id="newspost">
     <h2>{{ post.title }}</h2>
     <p>{{ post.timestamp }}</p>
-    <p>{{ post.body }}</p>
+    <div>{{ post.body|linebreaksbr }}</div>
 </div>
 {% endfor %}
 {% endblock %}

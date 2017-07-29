@@ -5,11 +5,11 @@ from news.models import NewsPost
 # Create your views here.
 
 def archive(request):
-    return HttpResponse(render(request, "archive.html", {'posts':NewsPost.objects.all()} ))
-    #posts = NewsPost.objects.all()
-    #t = loader.get_template("archive.html")
-    #c = Context({ 'posts':posts })
-    #return HttpResponse(t.render(c))
+    obs = NewsPost.objects.all()
+    for i in obs:
+        i.body = i.body[:200]+'...'
+    return HttpResponse(render(request, "archive.html", {'posts':obs} ))
 
 def newsdetail(request, NewsPost_id):
-    return HttpResponse(render(request, "newsdetail.html", {'posts':NewsPost.objects.filter(id=NewsPost_id)} ))
+    obs = NewsPost.objects.filter(id=NewsPost_id)
+    return HttpResponse(render(request, "newsdetail.html", {'posts': obs} ))
