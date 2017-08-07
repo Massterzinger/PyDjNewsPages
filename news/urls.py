@@ -1,9 +1,8 @@
 from django.conf.urls import *
-from news.views import archive, newsdetail
-
+from news import views
 
 urlpatterns = [
-    url(r'^$', archive, name="news"),
+    url(r'^$', views.ArchiveView.as_view(), name="news"),
 
-    url(r'^(?P<NewsPost_id>[0-9]+)$', newsdetail, name="newsdetail"),
+    url(r'^(?P<pk>[0-9]+)$', views.NewsPostDetail.as_view(), name="newsdetail"),
 ]

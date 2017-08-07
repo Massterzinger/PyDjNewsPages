@@ -1,36 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'w3style.css' %}" />
-<style type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'news/newsarchive.css' %}" />
 
-a.tile {
-    display: block;
-    color: white;
-    text-decoration: none;
-}
-
-.w3-card-4 {
-    margin: 8px;
-}
-
-.container {
-    display:flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: flex-start;
-    align-items: stretch;
-}
-
-a.tile:hover {
-    background-color: #951;
-}
-</style>
 <div class="container">
     {% for post in posts %}
     <div class="w3-half">
-        <div class="w3-card-4" style=" background-color: #595">
+        <div id="posts" class="w3-card-4 w3-border" style=" background-color: #595;">
             <a class="tile" href="{% url 'newsdetail' post.id %}">
                 <header class="w3-container w3-blue">
                     <h1>{{ post.title }}</h1>
@@ -52,23 +28,23 @@ a.tile:hover {
 
 
 
-{% if posts.has_other_pages %}
+{% if is_paginated %}
 <div class="w3-center">
 <div class="w3-bar">
-    {% if posts.has_previous %}
-        <a href="?page={{ posts.previous_page_number }}" class="w3-bar-item w3-button">&laquo;</a>
+    {% if page_obj.has_previous %}
+        <a href="??page={{ page_obj.previous_page_number }}" class="w3-bar-item w3-button">&laquo;</a>
     {% endif %}
 
-    {% for i in posts.paginator.page_range %}
-      {% if posts.number == i %}
+   {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
         <a href="?page={{ i }}" class="w3-button w3-red">{{ i }}</a>
       {% else %}
         <a href="?page={{ i }}" class="w3-button">{{ i }}</a>
       {% endif %}
     {% endfor %}
 
-{% if posts.has_next %}
-<a href="?page={{ posts.next_page_number }}" class="w3-button">&raquo;</a>
+{% if page_obj.has_next %}
+<a href="?page={{ page_obj.next_page_number }}" class="w3-button">&raquo;</a>
 {% endif %}
 
 </div>

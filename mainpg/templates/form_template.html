@@ -1,0 +1,5 @@
+{% for field in form %}
+    <label class="w3-text-black"><b>{{field.label_tag}}</b></label>  
+    <div class="w3-input w3-border w3-light-grey" type="text">{{field}}</div>
+    <br>
+{% endfor %}

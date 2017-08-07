@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="w3-card" style="margin: 8px; margin-top:16px;">   
+<div class="w3-container w3-teal">
+  <h2>Registration</h2>
+</div>
+<form class="w3-container">
+    {% csrf_token %}
+    {% include "form_template.html" %}
+    <button type="submit" class="w3-btn w3-blue-grey" style="width:100%; margin-bottom:16px;">Register</button>
+</form>
+</div>
+{% endblock %}

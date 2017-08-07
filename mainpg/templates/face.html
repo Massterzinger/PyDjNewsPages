@@ -1,41 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-<style type="text/css">
-    #rightnewsaggr { display: flex; flex-direction: column;
-    background: #698;
-    left: 80%; position: absolute; 
-    height: 50%; width: 20%; overflow: auto; margin-top: 2em}
+ {% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'mainpg/face.css' %}" />
 
-    #rightnewsaggr ul { 
-    list-style-type: none;
-    padding-left: 10;
-    padding-right: 10;
-    }
-
-    #rightnewsaggr ul li {
-    float: left;
-}
-
-    #rightnewsaggr ul li a {
-    display: block;
-    color: white;
-    text-decoration: none;
-}
-
-#rightnewsaggr ul li a:hover {
-    background-color: #444;
-}
-</style>
 <div id="content">
     <div id="rightnewsaggr">
         <ul>
-        {% for post in posts %}
-        <li><a href="news/{{ post.id }}">
+        {% for news in posts %}
+        <li><a href="news/{{ news.id }}">
             
-            <h2>{{ post.title }}</h2>
+            <h2>{{ news.title }}</h2>
             <font size=2 face='arial'>
-            <p>{{ post.timestamp }}</p>
-            <p>{{ post.body }}</p>
+            <p>{{ news.timestamp }}</p>
+            <p>{{ news.body }}</p>
             </font>
         </a></li>
         {% endfor %}

@@ -1,0 +1,23 @@
+
+a.tile {
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+#posts.w3-card-4 {
+    margin: 8px;
+}
+
+.container {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: stretch;
+}
+
+a.tile:hover {
+    background-color: #951;
+}
