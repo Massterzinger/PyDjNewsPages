@@ -11,14 +11,26 @@
         </div>
         <div id="navb">
             <div id="navbar" class="w3-bar w3-dark-grey w3-border w3-card-4 w3-large">
-                <a href="/" class="w3-bar-item w3-button w3-border-right w3-mobile">Home</a>
-                <a href="{% url 'news' %}" class="w3-bar-item w3-button w3-border-right w3-mobile">News</a>
-                <a href="#" class="w3-bar-item w3-button w3-border-right w3-mobile">Your Feed</a>
-                <a href="#" class="w3-bar-item w3-button w3-border-right w3-mobile">About</a>
-                
-                <input type="text" class="w3-bar-item w3-input" placeholder="Search..">
-                <a href="#" class="w3-bar-item w3-button w3-green"><i class="fa fa-search">Go</i></a>
-                <a href="{% url 'register' %}" class="w3-bar-item w3-button w3-right w3-mobile">Sign in</a>
+                <a href="/" class="w3-bar-item w3-button w3-border-right">Home</a>
+                <a href="{% url 'news' %}" class="w3-bar-item w3-button w3-border-right">News</a>
+            {% if user.is_authenticated %}
+                <a href="#" class="w3-bar-item w3-button w3-border-right">Your Feed</a>
+            {% endif %} 
+                <a href="#" class="w3-bar-item w3-button w3-border-right">About</a>
+
+                <form style="margin:0; padding:0; display: inline;" method="get" action="{% url 'news' %}">
+                    <input type="text" class="w3-input w3-bar-item" name="q" placeholder="Search..">
+                    <button type="submit" class="w3-button w3-green w3-bar-item"><i class="fa fa-search">Go</i></button>
+                </form>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="w3-bar-item w3-button w3-right w3-border-left">Log out</a>
+                <div class="w3-bar-item w3-text w3-right">Hello {{user.username}}</div>
+            {% else %}
+                <a href="{% url 'signin' %}" class="w3-bar-item w3-button w3-right">Sign in</a>
+                <div class="w3-bar-item w3-text w3-right">or</div>
+                <a href="{% url 'register' %}" class="w3-bar-item w3-button w3-border-left w3-right">Sign up</a>
+            {% endif %} 
             </div>
         </div>
         {% block content %}

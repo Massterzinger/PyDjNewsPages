@@ -1,7 +1,7 @@
 #rightnewsaggr { display: flex; flex-direction: column;
     background: #698;
     left: 80%; position: absolute; 
-    height: 50%; width: 20%; overflow: auto; margin-top: 2em}
+    height: 50%; width: 20%; overflow-y: auto; overflow-x: hidden; margin-top: 2em}
 
 #rightnewsaggr ul { 
     list-style-type: none;

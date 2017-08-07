@@ -30,7 +30,11 @@ class ArchiveView(generic.ListView):
     context_object_name = "posts"
     paginate_by = 10
     def get_queryset(self):
-        obs = NewsPost.objects.all()
+        query = self.request.GET.get('q')
+        if query:
+            obs = NewsPost.objects.filter(title__contains=query[0])
+        else:
+            obs = NewsPost.objects.all()
         for i in obs:
             i.body = i.body[:200]+'...'
         return obs

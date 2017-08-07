@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
 from django.views import generic
-from mainpg.forms import UserForm
+from mainpg import forms
 from django.http import HttpResponse
 from news.models import NewsPost
 
@@ -14,7 +15,7 @@ def facepage(request):
     return HttpResponse(render(request, "face.html", {'posts':obs} ))
 
 class UserFormView(generic.View):
-    form_class = UserForm
+    form_class = forms.UserForm
     template_name = 'registerform.html'
 
     def get(self, request):
@@ -34,6 +35,35 @@ class UserFormView(generic.View):
             if user != None:
                 if user.is_active:
                     login(request, user)
-                    return redirect('mainpg')
+                    return redirect('/news')
                 
         return render(request, self.template_name, {'form':form})
+
+class UserLogInFormView(generic.View):
+    form_class = forms.UserLogInForm
+    template_name = 'registerform.html'
+
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form':form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        username = request.POST['username']
+        password = request.POST['password']
+        #print(username, password)
+        user = authenticate(username=username, password=password)
+        if user:
+            if user.is_active:
+                login(request, user)
+                return redirect('/news')
+                
+        return render(request, self.template_name, {'form':form})
+
+@login_required
+def user_logout(request):
+    # Since we know the user is logged in, we can now just log them out.
+    logout(request)
+
+    # Take the user back to the homepage.
+    return redirect('/news')

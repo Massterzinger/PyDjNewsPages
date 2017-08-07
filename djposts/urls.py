@@ -15,16 +15,21 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from mainpg.views import facepage, UserFormView
+from mainpg import views
 
 admin.autodiscover()
 
 urlpatterns = [
+    url(r'^$', views.facepage, name='index'),
+
     url(r'^admin/', admin.site.urls),
 
-    url(r'^news/', include('news.urls')),
+    url(r'^news/', include('news.urls'), name='news'),
 
-    url(r'^$', facepage, name='index'),
+    url(r'^register/', views.UserFormView.as_view(), name='register'),
 
-    url(r'^register/', UserFormView.as_view(), name='register')
+    url(r'^signin/', views.UserLogInFormView.as_view(), name='signin'),
+
+    url(r'^logout/$', views.user_logout, name='logout'),
+
 ]
